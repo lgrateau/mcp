@@ -22,6 +22,21 @@ Thank you for your interest in contributing to the repository! This document pro
    git checkout -b my-feature
    ```
 
+## Add a new MCP server
+
+1. Find the right category for your MCP server
+2. Create a new row in any of the tables:
+
+   ```md
+   | [IBM Storage Insights MCP Server](https://github.com/IBM/ibm-storageinsights-mcpserver) | Leverage key IBM Storage Insights monitoring capabilities via an MCP interface. | *see link for instructions* |
+   ```
+
+   If your MCP server can be run using `uvx`, `npx` or `docker` you can use [this tool](https://vscodemcp.com/) to generate a button for one-click installation in VSCode (or other MCP Clients).
+
+   In the button's markdown code add `https://insiders.vscode.dev/redirect?url=` before `vscode:mcp/install` to make the deeplink work from both the browser and your IDE.
+
+3. Add the MCP Client configuration instructions to [`mcp.json`](./mcp.json)
+
 ## Development Guidelines
 
 ### Code Style

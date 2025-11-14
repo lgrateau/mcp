@@ -1,0 +1,103 @@
+{
+  "mcpServers": {
+    "ibm-decision-intelligence-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "di-mcp-server"],
+      "env": {
+        "APIKEY": "<APIKEY>",
+        "URL": "https://<TENANT_NAME>.decision-prod-us-south.decision.saas.ibm.com/ads/runtime/api/v1"
+      }
+    },
+    "ibm-mq-mcp-server": {},
+    "ibm-odm-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/DecisionsDev/decision-mcp-server",
+        "decision-mcp-server"
+      ]
+    },
+    "astra-db-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "@datastax/astra-db-mcp"],
+      "env": {
+        "ASTRA_DB_APPLICATION_TOKEN": "YOUR_ASTRA_DB_TOKEN",
+        "ASTRA_DB_API_ENDPOINT": "YOUR_ASTRA_DB_ENDPOINT"
+      }
+    },
+    "docling-mcp-server": {
+      "command": "uvx",
+      "args": ["--from=docling-mcp", "docling-mcp-server"]
+    },
+    "ibm_watsonxdata_local_mcp_server": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["ibm-watsonxdata-dl-retrieval-mcp-server", "--transport", "stdio"],
+      "env": {
+        "WATSONX_DATA_API_KEY": "YOUR_API_KEY",
+        "WATSONX_DATA_RETRIEVAL_ENDPOINT": "YOUR_RETRIVAL_ENDPOINT",
+        "WATSONX_DATA_TOKEN_GENERATION_ENDPOINT": "YOUR_BEARER_TOKEN_ENDPOINT",
+        "DOCUMENT_LIBRARY_API_ENDPOINT": "YOUR_DOCUMENT_LIBRARY_ENDPOINT",
+        "LH_CONTEXT": "SAAS"
+      }
+    },
+    "ibm_watsonxdata_remote_mcp_server": {
+      "url": "https://YOUR_INSTANCE_URL/api/v1/mcp/",
+      "headers": {
+        "authorization": "Bearer TOKEN"
+      },
+      "type": "http"
+    },
+    "ibmcloud-mcp-server": {},
+    "ibmcloud-code-engine-mcp-server": {},
+    "ibmcloud-vpc-mcp-server": {},
+    "terraform-mcp-server": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e", "TFE_ADDRESS=<HCP Terraform or TFE Address>",
+        "-e", "TFE_TOKEN=<HCP Terraform or TFE Token>",
+        "hashicorp/terraform-mcp-server"
+      ]
+    },
+    "ibm-instana-mcp-server": {},
+    "ibm-storage-insights-mcp-server": {},
+    "consul-mcp-server": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-e", "CONSUL_HTTP_ADDR=<Consul HTTP Address>",
+        "-e", "CONSUL_HTTP_TOKEN=<Consul HTTP Token>",
+        "hashicorp/consul-mcp-server"
+      ]
+    },
+    "vault-mcp-server": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-e", "VAULT_ADDR=<Vault Address>",
+        "-e", "VAULT_TOKEN=<Vault Token>",
+        "-e", "VAULT_NAMESPACE=<Vault Namespace>",
+        "hashicorp/vault-mcp-server"
+      ]
+    },
+    "vault-radar-mcp-server": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-e", "HCP_PROJECT_ID=<HCP Project ID>",
+        "-e", "HCP_CLIENT_ID=<HCP Service Principal Client ID>",
+        "-e", "HCP_CLIENT_SECRET=<HCP Service Principal Client Secret>",
+        "hashicorp/vault-radar-mcp-server"
+      ]
+    }
+  }
+}
